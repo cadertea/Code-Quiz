@@ -23,4 +23,15 @@ correct: "C"
 
 }];
 
-// function checkAnswers
+// how to show questions on innerhtml
+
+var runningQuestion = 0;
+
+function renderQuestion(){
+    let q = questionsList[runningQuestion];
+    
+    question.innerHTML = "<p>"+ q.question +"</p>";
+    choiceA.innerHTML = q.choiceA;
+    choiceB.innerHTML = q.choiceB;
+    choiceC.innerHTML = q.choiceC;
+}

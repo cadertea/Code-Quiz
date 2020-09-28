@@ -123,7 +123,7 @@ savedata.push({
 
 localStorage.setItem('data',JSON.stringify(savedata))
 endTextEl.innerHTML = '<h1> Thank you for playing </h1>'
-highscoreEl.innerHTML = ('View Highscore:' + ' ' + (localStorage.getItem(savedata.score)));
+highscoreEl.innerHTML = ('View Highscore:' + ' ' + JSON.parse(localStorage.getItem('data'))[0].score);
 }
 
 

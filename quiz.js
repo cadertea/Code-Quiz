@@ -18,7 +18,7 @@ var timeEl = document.getElementById('time');
 // var highscoreEl = getElementbyclass('highscore');
 
 
-
+//object of questions
 var questionList = [{//0
     question: 'what does HTML stand for?',//.question
     choiceA: 'hyper text markup language',//.ChoiceA
@@ -41,10 +41,11 @@ var questionList = [{//0
     choiceC: 'choice C',
     correct: "C"
 }];
-
+//variable for lastquestion reference that will be used to identify position
 var lastQuestion = questionList.length - 1;
 var time = lastQuestion * 5;
 
+//timer that shows where you are in terms of time and if you fall below 0 then the game ends
 function countdown(){
     timeEl.textContent='Time:' + time;
     if(time > 0){
@@ -57,6 +58,8 @@ function countdown(){
 //getting questions to show up and hidding initial display
 choicesEl.style.display = 'none';
 endTextEl.style.display = 'none';
+
+//calls upon the object question list
 function renderQuestions() {
     var c = questionList[runningQuestion];
     questionEl.textContent = questionList[runningQuestion].question;
@@ -92,6 +95,7 @@ function checkAnswer(userChoice) {
         captionEl.innerText = 'Wrong Answer'
         wrongAnswer++
     }
+    // using the lastquestion variable we assigned to note where the end of the game is
     if (runningQuestion < lastQuestion) {
         runningQuestion++
         renderQuestions();
@@ -113,7 +117,7 @@ clearInterval(timerobject)
 
 function user(){
     var userInitials = document.getElementById('userInitials').value
-    console.log(userInitials);
+    // console.log(userInitials);
 savedata.push({
     user: userInitials,
     score: correctAnswer,
@@ -121,6 +125,7 @@ savedata.push({
 
 })
 
+// calling upon the local storage to show the users highscore and ending text
 localStorage.setItem('data',JSON.stringify(savedata))
 endTextEl.innerHTML = '<h1> Thank you for playing </h1>'
 highscoreEl.innerHTML = ('View Highscore:' + ' ' + JSON.parse(localStorage.getItem('data'))[0].score);

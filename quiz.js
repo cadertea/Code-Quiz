@@ -46,14 +46,14 @@ var lastQuestion = questionList.length - 1;
 var time = lastQuestion * 5;
 
 //timer that shows where you are in terms of time and if you fall below 0 then the game ends
-function countdown(){
-    timeEl.textContent='Time:' + time;
-    if(time > 0){
-       time-- 
-    }else{
+function countdown() {
+    timeEl.textContent = 'Time:' + time;
+    if (time > 0) {
+        time--
+    } else {
         endofgame()
     }
-    
+
 }
 //getting questions to show up and hidding initial display
 choicesEl.style.display = 'none';
@@ -80,9 +80,9 @@ function startQuiz() {
     Start.style.display = "none";
 
     choicesEl.style.display = 'block';
-    
-timerobject = setInterval(countdown, 1000)
-renderQuestions();
+
+    timerobject = setInterval(countdown, 1000)
+    renderQuestions();
 
 };
 // validates answers and keeps questions on going
@@ -106,34 +106,33 @@ function checkAnswer(userChoice) {
 }
 
 //what occrus end of game// hides content and clears timer
-function endofgame(){
+function endofgame() {
     choicesEl.style.display = "none";
     questionEl.style.display = "none";
-endTextEl.style.display = 'block';
-captionEl.style.display = 'none';
-clearInterval(timerobject)
+    endTextEl.style.display = 'block';
+    captionEl.style.display = 'none';
+    clearInterval(timerobject)
 }
 
 
-function user(){
+function user() {
     var userInitials = document.getElementById('userInitials').value
     // console.log(userInitials);
-savedata.push({
-    user: userInitials,
-    score: correctAnswer,
-    time: 10 - timerobject,
+    savedata.push({
+        user: userInitials,
+        score: correctAnswer,
+        time: 10 - timerobject,
 
-})
+    })
 
-// calling upon the local storage to show the users highscore and ending text
-localStorage.setItem('data',JSON.stringify(savedata))
-endTextEl.innerHTML = '<h1> Thank you for playing </h1>'
-highscoreEl.innerHTML = ('View Highscore:' + ' ' + JSON.parse(localStorage.getItem('data'))[0].score);
+    // calling upon the local storage to show the users highscore and ending text
+    localStorage.setItem('data', JSON.stringify(savedata))
+    endTextEl.innerHTML = '<h1> Thank you for playing </h1>'
+    highscoreEl.innerHTML = ('View Highscore:' + ' ' + JSON.parse(localStorage.getItem('data'))[0].score);
 }
 
 
-//display none css visability to hidden
-//change opacity css
+
 
 
 

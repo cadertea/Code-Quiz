@@ -16,14 +16,14 @@
     <header class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="highScore">View Highscores:</div>
+                <div id="highscore">View Highscore:</div>
             </div>
             <div class="col-md-6">
-                <div class="time text-right">Time</div>
+                <div id="time" class="text-right">Time</div>
             </div>
         </div>
     </header>
-    
+
 
     <section class="container">
         <div class="row">
@@ -39,12 +39,12 @@
                 <section>
                     <h3 class="text-center" id="question">Try to answer the following coding question as accurate and
                         fast as you can before the timer runs out.</h3>
-                    <ol id="choices-quiz"   >
+                    <ol id="choices-quiz">
 
                         <button>
                             <li class="choice" id="A" onclick="checkAnswer('A')"></li>
                         </button> <br>
-                       
+
                         <button>
                             <li class="choice" id="B" onclick="checkAnswer('B')"></li>
                         </button> <br>
@@ -59,10 +59,17 @@
 
             </div>
         </div>
-        <div class='col-md-2'>
+        <div class='col-md-2'> </div>
+        <div class='row'>
+            <div class='col-md-12 text-center'>
+                <div id='endText'>
+                    <label>Enter user Initials</label>
+                    <input type="text" id='userInitials'>
+                    <button id="user" onclick='user()'> user details</button>
+                </div>
+                <div id="scoreContainer" style="display: none"></div>
 
-            <div id="scoreContainer" style="display: none"></div>
-
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12 mt-5 text-center">

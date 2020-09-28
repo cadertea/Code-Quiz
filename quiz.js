@@ -5,11 +5,16 @@ var choiceA = document.getElementById("A");
 var choiceB = document.getElementById("B");
 var choiceC = document.getElementById("C");
 var captionEl = document.getElementById("caption");
+var highscoreEl = document.getElementById('highscore');
 // var quiz = document.querySelector('#quiz');
+var endTextEl = document.getElementById('endText');
 var runningQuestion = 0;
 var correctAnswer = 0;
 var wrongAnswer = 0;
-// var timeEl = getElementbyclass('time');
+var timerobject = '';
+
+var savedata = JSON.parse(localStorage.getItem('data')) || []
+var timeEl = document.getElementById('time');
 // var highscoreEl = getElementbyclass('highscore');
 
 
@@ -38,9 +43,20 @@ var questionList = [{//0
 }];
 
 var lastQuestion = questionList.length - 1;
-//getting questions to show up
-choicesEl.style.display = 'none';
+var time = lastQuestion * 5;
 
+function countdown(){
+    timeEl.textContent='Time:' + time;
+    if(time > 0){
+       time-- 
+    }else{
+        endofgame()
+    }
+    
+}
+//getting questions to show up and hidding initial display
+choicesEl.style.display = 'none';
+endTextEl.style.display = 'none';
 function renderQuestions() {
     var c = questionList[runningQuestion];
     questionEl.textContent = questionList[runningQuestion].question;
@@ -61,12 +77,12 @@ function startQuiz() {
     Start.style.display = "none";
 
     choicesEl.style.display = 'block';
-    renderQuestions();
-
-
+    
+timerobject = setInterval(countdown, 1000)
+renderQuestions();
 
 };
-
+// validates answers and keeps questions on going
 function checkAnswer(userChoice) {
     console.log(userChoice)
     if (userChoice == questionList[runningQuestion].correct) {
@@ -80,11 +96,35 @@ function checkAnswer(userChoice) {
         runningQuestion++
         renderQuestions();
     } else {
-        console.log('correct asnwer', correctAnswer);
+        console.log('correct asnwer:', correctAnswer);
+        endofgame();
     }
 }
 
+//what occrus end of game// hides content and clears timer
+function endofgame(){
+    choicesEl.style.display = "none";
+    questionEl.style.display = "none";
+endTextEl.style.display = 'block';
+captionEl.style.display = 'none';
+clearInterval(timerobject)
+}
 
+
+function user(){
+    var userInitials = document.getElementById('userInitials').value
+    console.log(userInitials);
+savedata.push({
+    user: userInitials,
+    score: correctAnswer,
+    time: 10 - timerobject,
+
+})
+
+localStorage.setItem('data',JSON.stringify(savedata))
+endTextEl.innerHTML = '<h1> Thank you for playing </h1>'
+highscoreEl.innerHTML = ('View Highscore:' + ' ' + (localStorage.getItem(savedata.score)));
+}
 
 
 //display none css visability to hidden

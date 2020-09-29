@@ -82,11 +82,8 @@ function renderQuestions() {
     choiceA.innerHTML = c.choiceA;
     choiceB.innerHTML = c.choiceB;
     choiceC.innerHTML = c.choiceC;
-    // var choiceA = document.getElementById("A");
-    // choiceA.textContent = questionList[0].choiceA
-
+ 
 }
-
 
 // event listener which begins the quiz
 StartEl.addEventListener("click", startQuiz);

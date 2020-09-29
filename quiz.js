@@ -40,7 +40,23 @@ var questionList = [{//0
     choiceB: 'choice B',
     choiceC: 'choice C',
     correct: "C"
+},
+{//3
+    question: 'question number 4?',
+    choiceA: 'choice A',
+    choiceB: 'choice B',
+    choiceC: 'choice C',
+    correct: "C"
+},
+{//4
+    question: 'question number 5?',
+    choiceA: 'choice A',
+    choiceB: 'choice B',
+    choiceC: 'choice C',
+    correct: "C"
 }];
+
+
 //variable for lastquestion reference that will be used to identify position
 var lastQuestion = questionList.length - 1;
 var time = lastQuestion * 5;
@@ -93,7 +109,9 @@ function checkAnswer(userChoice) {
         correctAnswer++
     } else {
         captionEl.innerText = 'Wrong Answer'
-        wrongAnswer++
+        wrongAnswer++;
+        //decreasing time on timer when user gets question wrong
+        time--
     }
     // using the lastquestion variable we assigned to note where the end of the game is
     if (runningQuestion < lastQuestion) {
